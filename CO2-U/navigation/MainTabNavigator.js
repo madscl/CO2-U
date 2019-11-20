@@ -5,7 +5,8 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import SuggestionsScreen from '../screens/SuggestionsScreen';
-import AchievementsScreen from '../screens/SettingsScreen';
+import AchievementsScreen from '../screens/AchievementsScreen';
+import ActiveGoalsScreen from '../screens/ActiveGoalsScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -42,6 +43,7 @@ const LinksStack = createStackNavigator(
   config
 );
 
+
 LinksStack.navigationOptions = {
   tabBarLabel: 'Suggestions',
   tabBarIcon: ({ focused }) => (
@@ -67,12 +69,33 @@ AchievementsStack.navigationOptions = {
 
 AchievementsStack.path = '';
 
+
+const ActiveGoalsStack= createStackNavigator(
+  {
+    ActiveGoals: ActiveGoalsScreen,
+  },
+  config
+);
+
+
+ActiveGoalsStack.navigationOptions = {
+  tabBarLabel: 'Active Goals',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+  ),
+};
+
+ActiveGoalsStack.path = '';
+
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   AchievementsStack,
+  ActiveGoalsStack,
 });
 
 tabNavigator.path = '';
+
 
 export default tabNavigator;
