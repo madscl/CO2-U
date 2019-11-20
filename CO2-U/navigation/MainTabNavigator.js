@@ -4,10 +4,9 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import SuggestionsScreen from '../screens/SuggestionsScreen';
 import AchievementsScreen from '../screens/AchievementsScreen';
 import ActiveGoalsScreen from '../screens/ActiveGoalsScreen';
-
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -39,14 +38,14 @@ HomeStack.path = '';
 
 const LinksStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    Links: SuggestionsScreen,
   },
   config
 );
 
 
 LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+  tabBarLabel: 'Suggestions',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
   ),
