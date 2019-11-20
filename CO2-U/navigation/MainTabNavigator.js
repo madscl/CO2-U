@@ -54,23 +54,6 @@ LinksStack.navigationOptions = {
 
 LinksStack.path = '';
 
-const ActiveGoalsScreen = createStackNavigator(
-  {
-    ActiveGoals: ActiveGoalsScreen,
-  },
-  config
-);
-
-
-ActiveGoalsStack.navigationOptions = {
-  tabBarLabel: 'Active Goals',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
-  ),
-};
-
-ActiveGoalsStack.path = '';
-
 const AchievementsStack = createStackNavigator(
   {
     Achievement: AchievementsScreen,
@@ -87,12 +70,33 @@ AchievementsStack.navigationOptions = {
 
 AchievementsStack.path = '';
 
+
+const ActiveGoalsStack= createStackNavigator(
+  {
+    ActiveGoals: ActiveGoalsScreen,
+  },
+  config
+);
+
+
+ActiveGoalsStack.navigationOptions = {
+  tabBarLabel: 'Active Goals',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+  ),
+};
+
+ActiveGoalsStack.path = '';
+
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   AchievementsStack,
+  ActiveGoalsStack,
 });
 
 tabNavigator.path = '';
+
 
 export default tabNavigator;
