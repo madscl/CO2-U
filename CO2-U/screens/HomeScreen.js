@@ -69,7 +69,9 @@ export default function HomeScreen(MainNavigator) {
             title="Press me"
             color="#f194ff"
             //onPress={() => Alert.alert('Simple Button pressed')}
-            onPress={() => navigate('CalculationsScreen', {name: 'Calculations'})}
+            onPress={() => {
+               MainNavigator.navigation.navigate('Calculations')
+            }}
           />
         </View>
         <View style={styles.titleContainer}>
