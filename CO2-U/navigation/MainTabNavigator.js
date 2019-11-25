@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import SuggestionsScreen from '../screens/SuggestionsScreen';
 import AchievementsScreen from '../screens/AchievementsScreen';
 import ActiveGoalsScreen from '../screens/ActiveGoalsScreen';
+import CalculationsScreen from "../screens/CalculationsScreen";
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -16,6 +17,7 @@ const config = Platform.select({
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
+    Calculations: CalculationsScreen,
   },
   config
 );
