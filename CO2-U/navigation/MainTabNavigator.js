@@ -14,6 +14,7 @@ const config = Platform.select({
   default: {},
 });
 
+
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
@@ -25,51 +26,32 @@ const HomeStack = createStackNavigator(
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
+    //the 'ios-home' and 'md-home' will change the images at the bottom. 
+    //use https://github.com/oblador/react-native-vector-icons/blob/master/glyphmaps/Ionicons.json
+    //to find out the different options
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios'? `ios-home`: 'md-home'}/>
   ),
 };
 
 HomeStack.path = '';
 
-const LinksStack = createStackNavigator(
+
+const SuggestionsStack = createStackNavigator(
   {
-    Links: SuggestionsScreen,
+    Suggestions: SuggestionsScreen,
   },
   config
 );
 
 
-LinksStack.navigationOptions = {
+SuggestionsStack.navigationOptions = {
   tabBarLabel: 'Suggestions',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-chatbubbles' : 'md-chatbubbles'} />
   ),
 };
 
-LinksStack.path = '';
-
-const AchievementsStack = createStackNavigator(
-  {
-    Achievement: AchievementsScreen,
-  },
-  config
-);
-
-AchievementsStack.navigationOptions = {
-  tabBarLabel: 'Achievements',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
-  ),
-};
-
-AchievementsStack.path = '';
+SuggestionsStack.path = '';
 
 
 const ActiveGoalsStack= createStackNavigator(
@@ -79,22 +61,38 @@ const ActiveGoalsStack= createStackNavigator(
   config
 );
 
-
 ActiveGoalsStack.navigationOptions = {
   tabBarLabel: 'Active Goals',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-checkbox' : 'md-checkbox'} />
   ),
 };
 
 ActiveGoalsStack.path = '';
 
+const AchievementsStack = createStackNavigator(
+  {
+    Achievement: AchievementsScreen,
+  },
+  config
+);
+
+
+AchievementsStack.navigationOptions = {
+  tabBarLabel: 'Achievements',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-ribbon' : 'md-ribbon'} />
+  ),
+};
+
+AchievementsStack.path = '';
+
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  AchievementsStack,
+  SuggestionsStack,
   ActiveGoalsStack,
+  AchievementsStack,
 });
 
 tabNavigator.path = '';
