@@ -21,57 +21,48 @@ export default function ChallengesScreen() {
     <SegmentedControlIOS
       values={["One", "Two"]}
       selectedIndex={0}
-      // onChange={event => {
-      //   this.setState({ selectedIndex: 0 });
-      // }}
+      onChange={event => {
+        this.setState({ selectedIndex: event.nativeEvent.selectedSegmentIndex });
+      }}
     />
   );
 }
 
-// class ChallengesScreen extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       customStyleIndex: 0,
-//       //Default selected Tab Indexes for cusatom SegmentedControlTab
-//     };
-//   }
-
-//   handleCustomIndexSelect = (index) => {
-//     //handle tab selection for custom Tab Selection SegmentedControlTab
-//     this.setState(prevState => ({ ...prevState, customStyleIndex: index }));
-//   };
-
-//   render() {
-//     const { customStyleIndex } = this.state;
-//     return (
-//       <View style={styles.container}>
-//         {/* Simple Segmented with Custom Styling*/}
-//         <SegmentedControlIOS
-//           values={['one', 'two']}
-//           selectedIndex={customStyleIndex}
-//           onTabPress={this.handleCustomIndexSelect}
-//           borderRadius={0}
-//           tabsContainerStyle={{ height: 50, backgroundColor: '#F2F2F2' }}
-//           tabStyle={{
-//             backgroundColor: '#F2F2F2',
-//             borderWidth: 0,
-//             borderColor: 'transparent',
-//           }}
-//           activeTabStyle={{ backgroundColor: 'white', marginTop: 2 }}
-//           tabTextStyle={{ color: '#444444', fontWeight: 'bold' }}
-//           activeTabTextStyle={{ color: '#888888' }}
-//         />
-//         {customStyleIndex === 0 && (
-//           <Text style={styles.tabContent}> Tab one</Text>
-//         )}
-//         {customStyleIndex === 1 && (
-//           <Text style={styles.tabContent}> Tab two</Text>
-//         )}
-//       </View>
-//     );
-//   }
-// }
+type SegmentedControlIOSProps = $ReadOnly<{|
+  ...ViewProps,
+  /**
+   * The labels for the control's segment buttons, in order.
+   */
+  values?: $ReadOnlyArray<string>,
+  /**
+   * The index in `props.values` of the segment to be (pre)selected.
+   */
+  selectedIndex?: ?number,
+  /**
+   * Callback that is called when the user taps a segment;
+   * passes the segment's value as an argument
+   */
+  onValueChange?: ?(value: number) => mixed,
+  /**
+   * Callback that is called when the user taps a segment;
+   * passes the event as an argument
+   */
+  onChange?: ?(event: Event) => mixed,
+  /**
+   * If false the user won't be able to interact with the control.
+   * Default value is true.
+   */
+  enabled?: boolean,
+  /**
+   * Accent color of the control.
+   */
+  tintColor?: ?string,
+  /**
+   * If true, then selecting a segment won't persist visually.
+   * The `onValueChange` callback will still work as expected.
+   */
+  momentary?: ?boolean,
+|}>;
 
 const styles = StyleSheet.create({
   container: {
