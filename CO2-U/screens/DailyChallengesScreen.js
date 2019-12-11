@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native';
 
-export default function SuggestionsScreen() {
+export default function DailyChallengesScreen() {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.getStartedText}>Here's how to reduce your carbon footprint</Text>
@@ -22,9 +22,9 @@ export default function SuggestionsScreen() {
   );
 }
 
-SuggestionsScreen.navigationOptions = {
-  title: 'Suggestions',
-};
+// ChallengesScreen.navigationOptions = {
+//   title: 'Challenges',
+// };
 
 const styles = StyleSheet.create({
   container: {

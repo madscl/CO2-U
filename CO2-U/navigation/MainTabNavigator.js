@@ -4,7 +4,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import SuggestionsScreen from '../screens/SuggestionsScreen';
+import ChallengesScreen from '../screens/ChallengesScreen';
 import AchievementsScreen from '../screens/AchievementsScreen';
 import ActiveGoalsScreen from '../screens/ActiveGoalsScreen';
 import CalculationsScreen from "../screens/CalculationsScreen";
@@ -36,22 +36,22 @@ HomeStack.navigationOptions = {
 HomeStack.path = '';
 
 
-const SuggestionsStack = createStackNavigator(
+const ChallengesStack = createStackNavigator(
   {
-    Suggestions: SuggestionsScreen,
+    Challenges: ChallengesScreen,
   },
   config
 );
 
 
-SuggestionsStack.navigationOptions = {
-  tabBarLabel: 'Suggestions',
+ChallengesStack.navigationOptions = {
+  tabBarLabel: 'Challenges',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-chatbubbles' : 'md-chatbubbles'} />
   ),
 };
 
-SuggestionsStack.path = '';
+ChallengesStack.path = '';
 
 
 const ActiveGoalsStack= createStackNavigator(
@@ -90,7 +90,7 @@ AchievementsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  SuggestionsStack,
+  ChallengesStack,
   ActiveGoalsStack,
   AchievementsStack,
 });
