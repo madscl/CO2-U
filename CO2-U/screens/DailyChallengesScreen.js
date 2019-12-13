@@ -11,20 +11,22 @@ import {
   View,
 } from 'react-native';
 
-export default function DailyChallengesScreen() {
-  return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.getStartedText}>Here's how to reduce your carbon footprint</Text>
-      <Text style={styles.getStartedText}></Text>
-      <Text style={styles.getAttentionText}>Daily Challenge:</Text> 
-      <Text style={styles.dailyChallengeText}>Try to eat 2 plant based meals today!</Text>
-    </ScrollView>
-  );
+export default class DailyChallengesScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {valx: 0};
+  }
+  render() {
+    return (
+      <ScrollView style={StyleSheet.container}>
+        <Text style={styles.getStartedText}>Here's how to reduce your carbon footprint</Text>
+        <Text style={styles.getStartedText}></Text>
+        <Text style={styles.getAttentionText}>Daily Challenge:</Text> 
+        <Text style={styles.dailyChallengeText}>Try to eat 2 plant based meals today!</Text>
+      </ScrollView>
+    )
+  }
 }
-
-// ChallengesScreen.navigationOptions = {
-//   title: 'Challenges',
-// };
 
 const styles = StyleSheet.create({
   container: {
