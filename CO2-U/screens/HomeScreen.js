@@ -18,6 +18,7 @@ import { MonoText } from '../components/StyledText';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation';
 import CalculationsScreen from '../screens/CalculationsScreen';
+import { AuthSession } from 'expo';
 
 function Separator() {
   return <View style={styles.separator} />;
@@ -58,12 +59,8 @@ export default function HomeScreen(MainNavigator) {
         contentContainerStyle={styles.contentContainer}>
         <View style={styles.welcomeContainer}>
           <Image
-            source={
-              __DEV__
-                ? require('../assets/images/earth-cartoon.jpg')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
+            source={require('../assets/images/earth.png')}
+            style={styles.welImage}
           />
             <Button
             title="Press me"
@@ -100,6 +97,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 50,
   },
+  welImage: {
+    alignItems:'center',
+    justifyContent:'center',
+    width: 400,
+    height: 400,
+    //resizeMode: 'center',
+    //margin: 'auto',
+  }
   // homeScreenFilename: {
   //   marginVertical: 7,
   // },
