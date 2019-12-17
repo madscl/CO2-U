@@ -10,23 +10,60 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import * as firebase from 'firebase';
+
+//setting up firebase
+var firebaseConfig = {
+  apiKey: "AIzaSyBK6JW-daTxb4cdaU0lvopE3dWJUeeLI-Q",
+  authDomain: "coandu-b7fb5.firebaseapp.com",
+  databaseURL: "https://coandu-b7fb5.firebaseio.com",
+  projectId: "coandu-b7fb5",
+  storageBucket: "coandu-b7fb5.appspot.com",
+  messagingSenderId: "1090602721142",
+  appId: "1:1090602721142:web:5a33a3e8013df169fce457",
+  measurementId: "G-JL044NSZGD"
+};
+
+//initialize firebase
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+//firebase.analytics();
 
 export default class DailyChallengesScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {valx: 0};
+    //updates daily challenge value
+    this.state = {
+      daily: "Loading..."
+    }
+    this.setupDailyChallengeListener()
   }
+
+  setupDailyChallengeListener() {
+    //references daily challenge branch and snapshots value
+    firebase.database().ref('daily-challenge').on('value', (snapshot) => {
+      console.log(snapshot.val());
+      //sets state as value
+      this.setState({ daily: snapshot.val()})
+    });
+  }
+
   render() {
     return (
       <ScrollView style={StyleSheet.container}>
         <Text style={styles.getStartedText}>Here's how to reduce your carbon footprint</Text>
         <Text style={styles.getStartedText}></Text>
         <Text style={styles.getAttentionText}>Daily Challenge:</Text> 
-        <Text style={styles.dailyChallengeText}>Try to eat 2 plant based meals today!</Text>
+        <Text style={styles.dailyChallengeText}>{this.state.daily}</Text>
       </ScrollView>
     )
   }
 }
+
+
+DailyChallengesScreen.navigationOptions = {
+  title: 'Daily Suggestions',
+};
+
 
 const styles = StyleSheet.create({
   container: {
