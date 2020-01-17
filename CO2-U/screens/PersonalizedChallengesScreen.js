@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import * as firebase from 'firebase';
 
 export default class PersonalizedChallengesScreen extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ export default class PersonalizedChallengesScreen extends React.Component {
     )
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
