@@ -8,32 +8,115 @@ import {
   Text,
   TouchableOpacity,
   View,
+  TextInput,
   Button,
-  Item,
   Alert, 
   SafeAreaView, 
   FlatList, 
   AsyncStorage,
+  StatusBar,
 } from 'react-native';
+
+const STORAGE_KEY = '@save_name'
 
 import Constants from 'expo-constants';
 import { MonoText } from '../components/StyledText';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation';
+import Item from '../components/Item';
 
-export default function CalculationsScreen() {
-  return ( 
-    <View style={styles.container}>
-      <ScrollView style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>Question 1</Text>
-          </View>
-        <View style={styles.welcomeContainer}>
+export default class CalculationsScreen extends React.Component {
+  // state = { 
+  //   text: '',
+  //   name: ''
+  // }
+  state = {
+    answer: 0
+  }
+  // state = {
+  //   isDataReady: false,
+  //   mockItems: ['First Item', 'Second Item', 'Third Item']
+  // }
+
+  componentDidMount() {
+    this.retrieveData()
+  }
+
+  retrieveData = async () => {
+    try {
+      const answer = await AsyncStorage.getItem(STORAGE_KEY)
+      if (answer !== 0) {
+        this.setState({answer})
+      }
+    } catch (e) {
+      alert('Failed to save answer.')
+    }
+  }
+
+  save = async name => {
+    try {
+      await AsyncStorage.setItem(STORAGE_KEY, name)
+      alert('Data successfully saved!')
+      this.setState({name})
+    } catch(e) {
+      alert('Failed to save name.')
+    }
+  }
+
+  // removeEverything = async() => {
+  //   try{
+  //     await AsyncStorage.clear()
+  //     alert('Storage successfully cleared!')
+  //   } catch (e) {
+  //     alert('Failed to clear the async storage.')
+  //   }
+  // }
+
+  //onButtonPressed = text => this.setState({text})
+
+  // onSubmitEditing = () => {
+  //   const onSave = this.save
+  //   const {text} = this.state
+
+  //   if(!text) return
+
+  //   onSave(text)
+  //   this.setState({text: ''})
+  // }
+
+  render() { 
+    const{answer} = this.state
+    return ( 
+      <View style={styles.container}>
+        <ScrollView style={styles.container}
+          contentContainerStyle={styles.contentContainer}>
+            <View style={styles.titleContainer}>
+              {/* <FlatList  
+                data={this.state.mockItems}
+                contentContainerStyle={styles.content}
+                renderItem={row => {
+                  return <Item text={row.item} />
+                }}
+                keyExtractor={item => item.id}
+              /> */}
+              <Text style={styles.titleText}>Question 1</Text>
+              <TextInput
+                style={styles.input}
+                value={answer}
+                // placeholder='Type your name, hit enter, and refresh'
+                // onChangeText={this.onChangeText}
+                // onSubmitEditing={this.onSubmitEditing}
+              />
+              {/* <Text style={styles.text}>Hello {name}!</Text> */}
+              {/* <TouchableOpacity onPress={this.removeEverything} style={styles.button}>
+                <Text style={styles.buttonText}>Clear Storage</Text>
+              </TouchableOpacity> */}
+            </View>
+            <View style={styles.welcomeContainer}>
               <Button
               title="Item 1"
               color="#f194ff"
-              onPress={() => Alert.alert('Simple Button pressed')}
+              onPress={() => this.save}
               //onPress={() => {
                 //color='blue'
               //}}
@@ -47,122 +130,10 @@ export default function CalculationsScreen() {
               //}}
             />
         </View>
-        <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>Question 2</Text>
-          </View>
-        <View style={styles.welcomeContainer}>
-              <Button
-              title="Item 1"
-              color='red'
-              /*onPress={() => Alert.alert('Simple Button pressed')}
-              onPress={() => {
-                color='blue'
-              }}*/
-            />
-            <Button
-              title="Item 2"
-              color='red'
-              /*onPress={() => Alert.alert('Simple Button pressed')}
-              onPress={() => {
-                color='blue'
-              }}*/
-            />
-        </View>
-        <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>Question 3</Text>
-          </View>
-        <View style={styles.welcomeContainer}>
-              <Button
-              title="Item 1"
-              color='orange'
-              /*onPress={() => Alert.alert('Simple Button pressed')}
-              onPress={() => {
-                color='blue'
-              }}*/
-            />
-            <Button
-              title="Item 2"
-              color='orange'
-              /*onPress={() => Alert.alert('Simple Button pressed')}
-              onPress={() => {
-                color='blue'
-              }}*/
-            />
-        </View>
-        <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>Question 4</Text>
-          </View>
-        <View style={styles.welcomeContainer}>
-              <Button
-              title="Item 1"
-              color='yellow'
-              /*onPress={() => Alert.alert('Simple Button pressed')}
-              onPress={() => {
-                color='blue'
-              }}*/
-            />
-            <Button
-              title="Item 2"
-              color='yellow'
-              /*onPress={() => Alert.alert('Simple Button pressed')}
-              onPress={() => {
-                color='blue'
-              }}*/
-            />
-        </View>
-        <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>Question 5</Text>
-          </View>
-        <View style={styles.welcomeContainer}>
-              <Button
-              title="Item 1"
-              color='green'
-              /*onPress={() => Alert.alert('Simple Button pressed')}
-              onPress={() => {
-                color='blue'
-              }}*/
-            />
-            <Button
-              title="Item 2"
-              color='green'
-              /*onPress={() => Alert.alert('Simple Button pressed')}
-              onPress={() => {
-                color='blue'
-              }}*/
-            />
-        </View>
-        <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>Question 6</Text>
-          </View>
-        <View style={styles.welcomeContainer}>
-              <Button
-              title="Item 1"
-              color='blue'
-              /*onPress={() => Alert.alert('Simple Button pressed')}
-              onPress={() => {
-                color='blue'
-              }}*/
-            />
-            <Button
-              title="Item 2"
-              color='blue'
-              /*onPress={() => Alert.alert('Simple Button pressed')}
-              onPress={() => {
-                color='blue'
-              }}*/
-            />
-        </View>
-        {/**
-        * Go ahead and delete ExpoLinksView and replace it with your content;
-        * <View style={styles.item}>
-          <Text style={styles.title}>{title}</Text>
-          </View>
-        * 
-        * we just wanted to provide you with some helpful links.
-        */}
-      </ScrollView>
+        </ScrollView>
       </View>
-  );
+    );
+  }
 }
 
 
