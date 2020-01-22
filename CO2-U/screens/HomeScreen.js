@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   //determines layout for the title "CO2+U" 
   ttlText: {
     fontSize: 50,
-    font: 'Calistoga-Regular',
+    fontFamily: 'Cochin', //changed font to not error
   },
   titleContainer: {
     alignItems: 'center',

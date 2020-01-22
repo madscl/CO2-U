@@ -27,7 +27,7 @@ export default function CalculationsScreen() {
       <ScrollView style={styles.container}
         contentContainerStyle={styles.contentContainer}>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>   1. What is your most used method of transportation?</Text>
+          <Text style={styles.titleText}>1. What is your most used method of transportation?</Text>
         </View>
         <View style={styles.welcomeContainer}>
           <Button
@@ -68,7 +68,7 @@ export default function CalculationsScreen() {
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>   2. If you drive a car or motorcycle what is your average gas mileage?</Text>
+          <Text style={styles.titleText}>2. If you drive a car or motorcycle what is your average gas mileage?</Text>
         </View>
         <View style={styles.welcomeContainer}>
           <Button
@@ -105,7 +105,7 @@ export default function CalculationsScreen() {
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>   3. How many miles on average do you travel each day?</Text>
+          <Text style={styles.titleText}>3. How many miles on average do you travel each day?</Text>
         </View>
         <View style={styles.welcomeContainer}>
           <Button
@@ -134,7 +134,7 @@ export default function CalculationsScreen() {
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>   4. How many people are you usually driving with?</Text>
+          <Text style={styles.titleText}>4. How many people are you usually driving with?</Text>
         </View>
         <View style={styles.welcomeContainer}>
           <Button
@@ -159,7 +159,7 @@ export default function CalculationsScreen() {
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>   5. How much time do you want to spend on reducing your carbon footprint?</Text>
+          <Text style={styles.titleText}>5. How much time do you want to spend on reducing your carbon footprint?</Text>
         </View>
         <View style={styles.welcomeContainer}>
           <Button
@@ -188,7 +188,7 @@ export default function CalculationsScreen() {
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>   6. How much money do you want to spend on reducing your carbon footprint?</Text>
+          <Text style={styles.titleText}>6. How much money do you want to spend on reducing your carbon footprint?</Text>
         </View>
         <View style={styles.welcomeContainer}>
           <Button
@@ -217,7 +217,7 @@ export default function CalculationsScreen() {
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>   7. How much electricity do you feel that your family uses?</Text>
+          <Text style={styles.titleText}>7. How much electricity do you feel that your family uses?</Text>
         </View>
         <View style={styles.welcomeContainer}>
           <Button
@@ -242,7 +242,7 @@ export default function CalculationsScreen() {
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>   8. What are your eating habits?</Text>
+          <Text style={styles.titleText}>8. What are your eating habits?</Text>
         </View>
         <View style={styles.welcomeContainer}>
           <Button
@@ -321,7 +321,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   titleText: { //changed name to titleText to match above call, from there could change font size and style
-    fontSize: 30,
+    fontSize: 20,
+    padding: 20, //added padding so text not start on edge of screen
     fontFamily: 'Cochin',
   },
 });
