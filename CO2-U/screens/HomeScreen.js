@@ -13,12 +13,31 @@ import {
   Alert,
 } from 'react-native';
 
+import * as Font from 'expo-font';
 import Constants from 'expo-constants';
 import { MonoText } from '../components/StyledText';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation';
 import CalculationsScreen from '../screens/CalculationsScreen';
 import { AuthSession } from 'expo';
+
+/*export default class App extends React.Component {
+  state = {
+    fontLoaded = false,
+  };
+  async componentDidMount() {
+    await Font.loadAsync({
+      'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+  componentDidMount() {
+    Font.loadAsync({
+      'open-sans-bold': require('./assets/fonts/Calistoga-Regular.ttf'),
+    });
+  }
+}*/
 
 function Separator() {
   return <View style={styles.separator} />;
@@ -63,7 +82,7 @@ export default function HomeScreen(MainNavigator) {
             style={styles.welImage}
           />
             <Button
-            title="Press me"
+            title="Calculate"
             color="#f194ff"
             //onPress={() => Alert.alert('Simple Button pressed')}
             onPress={() => {
@@ -72,7 +91,7 @@ export default function HomeScreen(MainNavigator) {
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>CO2 + U</Text>
+          <Text style={styles.ttlText}>CO2+U</Text>
         </View>
       </ScrollView>
     </View>
@@ -93,6 +112,10 @@ const styles = StyleSheet.create({
   //   paddingTop: 30,
   // },
   //determines layout for the title "CO2+U" 
+  ttlText: {
+    fontSize: 50,
+    fontFamily: 'Cochin', //changed font to not error
+  },
   titleContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
