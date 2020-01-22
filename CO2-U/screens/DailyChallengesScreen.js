@@ -48,7 +48,9 @@ export default class DailyChallengesScreen extends React.Component {
   }
 
   componentDidMount() {
-    value = '8'
+    var today = new Date();
+    date = today.getDate();
+    value = date
     this.setupDailyChallengeListener(value)
   }
 
