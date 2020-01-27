@@ -112,10 +112,10 @@ const styles = StyleSheet.create({
   //   paddingTop: 30,
   // },
   //determines layout for the title "CO2+U" 
-  ttlText: {
-    fontSize: 50,
-    font: 'Calistoga-Regular',
-  },
+//  ttlText: {
+//    fontSize: 50,
+//    font: 'Calistoga-Regular',
+//  },
   titleContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
