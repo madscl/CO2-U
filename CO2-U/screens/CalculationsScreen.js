@@ -24,33 +24,55 @@ import {createStackNavigator} from 'react-navigation';
 
 export default class CalculationsScreen extends React.Component {
   state = {
-    'value': 0
+    'transportation': '',
+    'fossilmileage' : '',
+    'mileage' : '',
+    'peopledrivewith' : '',
+    'timespent' : '',
+    'moneyspend' : '',
+    'electricity' : '',
+    'eating' : ''
   }
-  componentDidMount = () => AsyncStorage.getItem('value').then((value) => this.setState({'value':value}))
+  //componentDidMount = () => AsyncStorage.getItem('value').then((value) => this.setState({'value':value}))
 
-  setValue = (value) => {
-    AsyncStorage.setItem('value', value);
-    this.setState({'value': value});
+  setValue = (key, value) => {
+    console.log('setValue called with key = ', key, ' value = ', value);
+    AsyncStorage.setItem(key, value);
+    this.setState(() => {
+      console.log('transportation value = ', value)
+      
+      return {
+        state: value
+      };
+    }); 
+  }
+
+  setTransportationValue = (value) => {
+    console.log('setTransportationValue called  value = ', value);
+    AsyncStorage.setItem('transportation', value);
+    this.setState(() => {
+      console.log('transportation value = ', value)      
+      return {
+        transportation: value
+      };
+    }); 
   }
   render() {
-    console.log(this.state.value);
+    console.log('transportation state = ', this.state.transportation);
     return ( 
       <View style={styles.container}>
         <ScrollView style={styles.container}
           contentContainerStyle={styles.contentContainer}> 
           <View style={styles.titleContainer}>
             <Text style={styles.titleText}>   1. What is your most used method of transportation? </Text>
-            <TextInput style = {styles.textInput} autoCapitalize = 'none'
-              onChangeText = {this.setValue}/>
-            <Text>
-              {this.state.value}
-            </Text>
           </View>
           <View style={styles.welcomeContainer}>
             <Button
               title="Car"
               color="#003319"
-              onPress={() => (this.setValue)}   //Alert.alert('Simple Button pressed')}
+              //onPress={() => (this.setValue('transportation', '5'))}   //Alert.alert('Simple Button pressed')}
+              //onPress={() => (this.setValue('transportation', '5'))}
+              onPress={() => ( this.setTransportationValue('5') )}
                 
               //onPress={() => {
                   //color='blue'
