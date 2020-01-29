@@ -35,16 +35,23 @@ export default class DailyChallengesScreen extends React.Component {
     this.state = {
       daily: "Loading..."
     }
-    this.setupDailyChallengeListener()
   }
 
-  setupDailyChallengeListener() {
+  
+  setupDailyChallengeListener(dailyNum) {
     //references daily challenge branch and snapshots value
-    firebase.database().ref('daily-challenge').on('value', (snapshot) => {
+    firebase.database().ref('suggestions/' + dailyNum).on('value', (snapshot) => {
       console.log(snapshot.val());
       //sets state as value
       this.setState({ daily: snapshot.val()})
     });
+  }
+
+  componentDidMount() {
+    var today = new Date();
+    date = today.getDate();
+    value = date
+    this.setupDailyChallengeListener(value)
   }
 
   render() {
@@ -76,13 +83,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 50,
   },
   getStartedText: {
-    fontSize: 22,
+    fontSize: 28,
     color: 'rgba(0 ,100 ,0, 1)',
-    lineHeight: 24,
+    lineHeight: 28,
     textAlign: 'center',
   },
   getAttentionText: {
-    fontSize: 20,
+    fontSize: 24,
     color: 'rgba(0 ,0 ,0, 100)',
     lineHeight: 24,
     textAlign: 'center',

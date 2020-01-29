@@ -299,6 +299,7 @@ export default class CalculationsScreen extends React.Component {
               color="#00994C"
               onPress={() => ( this.setTimeSpentValue('0') )}
             />
+
           </View>
           <View style={styles.titleContainer}>
             <Text style={styles.titleText}>   6. How much money do you want to spend on reducing your carbon footprint?</Text>
@@ -415,7 +416,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   titleText: { //changed name to titleText to match above call, from there could change font size and style
-    fontSize: 30,
+    fontSize: 20,
+    padding: 20, //added padding so text not start on edge of screen
     fontFamily: 'Cochin',
   },
   textInput: {
