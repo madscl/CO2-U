@@ -32,35 +32,58 @@ export default class DailyChallengesScreen extends React.Component {
   constructor(props) {
     super(props);
     //updates daily challenge value
+    state = {};
     this.state = {
       daily: "Loading..."
     }
   }
-
   
   setupDailyChallengeListener(dailyNum) {
     //references daily challenge branch and snapshots value
     firebase.database().ref('suggestions/' + dailyNum).on('value', (snapshot) => {
       console.log(snapshot.val());
       //sets state as value
-      this.setState({ daily: snapshot.val()})
+      this.setState({daily: snapshot.val()})
+    });
+  }
+
+  setupBlurbListener(dailyNum) {
+    //references daily challenge branch and snapshots value
+    firebase.database().ref('blurbs/' + dailyNum).on('value', (snapshot) => {
+      console.log(snapshot.val());
+      //sets state as value
+      this.setState({blurb: snapshot.val()})
     });
   }
 
   componentDidMount() {
+    //this is the part which allows it to update daily
     var today = new Date();
     date = today.getDate();
     value = date
     this.setupDailyChallengeListener(value)
+    this.setupBlurbListener(value)
   }
 
   render() {
     return (
       <ScrollView style={StyleSheet.container}>
-        <Text style={styles.getStartedText}>Here's how to reduce your carbon footprint</Text>
+        <Text style={styles.getStartedText}>Here's how to reduce your carbon footprint today:</Text>
         <Text style={styles.getStartedText}></Text>
-        <Text style={styles.getAttentionText}>Daily Challenge:</Text> 
+        <Text style={styles.getStartedText}></Text>
+        <Text style={styles.getAttentionText}>Daily Challenge</Text> 
         <Text style={styles.dailyChallengeText}>{this.state.daily}</Text>
+        <Text style={styles.getStartedText}></Text>
+        <Text style={styles.getAttentionText}>Why?</Text>
+        <Text style={styles.dailyChallengeText}>{this.state.blurb}</Text>
+        <Image
+            source={
+              __DEV__
+                ? require('../assets/images/dailyChallengePlant.png')
+                : require('../assets/images/robot-prod.png')
+            }
+            style={styles.iconImage}
+          />
       </ScrollView>
     )
   }
@@ -77,6 +100,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 15,
     backgroundColor: '#fff',
+  },
+  iconImage: {
+    //width: 200,
+    //height: 250,
+    //resizeMode: 'contain',
+    marginTop: 150,
+    marginLeft: 5,
+    //textAlign: 'center',
   },
   getStartedContainer: {
     alignItems: 'center',
@@ -95,7 +126,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   dailyChallengeText: {
-    fontSize: 16,
+    fontSize: 20,
     color: 'rgba(0 ,0 ,0, 100)',
     lineHeight: 24,
     textAlign: 'center',

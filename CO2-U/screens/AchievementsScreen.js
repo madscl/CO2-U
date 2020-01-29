@@ -29,12 +29,8 @@ export default function AchievementsScreen() {
   return (
     <ScrollView style={styles.container}>
       <Image
-            source={
-              __DEV__
-                ? require('../assets/images/earth-cartoon.jpg')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.iconImage}
+            source={require('../assets/images/earth.png')}
+            style={styles.welImage}
           />
       <Text style={styles.achievementName}>Meatless Mondays</Text>
       <Text style={styles.achievementDescription}>Eat vegetarian every Monday</Text>
@@ -53,13 +49,24 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     backgroundColor: '#fff',
   },
-  iconImage: {
+  /*iconImage: {
     width: 90,
     height: 72,
     resizeMode: 'contain',
     marginTop: 3,
     marginLeft: 150,
     //textAlign: 'center',
+  },
+  */
+  welImage: {
+    alignItems:'center',
+    justifyContent:'center',
+    width: 400,
+    height: 400,
+    marginTop: -70,
+    marginLeft: 20,
+    //resizeMode: 'center',
+    //margin: 'auto',
   },
   achievementName: {
     fontSize: 20,

@@ -21,14 +21,6 @@ export default class PersonalizedChallengesScreen extends React.Component {
     return (
       <ScrollView style={StyleSheet.container}>
         <Text style={styles.getStartedText}>this is the personalized challenges screen</Text>
-        <Image
-            source={
-              __DEV__
-                ? require('../assets/images/flowers.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.iconImage}
-          />
       </ScrollView>
     )
   }
@@ -40,14 +32,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 15,
     backgroundColor: '#fff',
-  },
-  iconImage: {
-    width: 250,
-    height: 250,
-    //resizeMode: 'contain',
-    marginTop: 430,
-    marginLeft: 5,
-    //textAlign: 'center',
   },
   getStartedContainer: {
     alignItems: 'center',
