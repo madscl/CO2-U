@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 
 export default class ActiveGoalsScreen extends React.Component {
   static navigationOptions = {
-    title: 'Active Goals',
+    title: 'Completed Challenges',
   };
 
   render() {
