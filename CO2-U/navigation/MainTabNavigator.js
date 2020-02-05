@@ -62,7 +62,7 @@ const ActiveGoalsStack= createStackNavigator(
 );
 
 ActiveGoalsStack.navigationOptions = {
-  tabBarLabel: 'Active Goals',
+  tabBarLabel: 'Completed Challenges',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-checkbox' : 'md-checkbox'} />
   ),
