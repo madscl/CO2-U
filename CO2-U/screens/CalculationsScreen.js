@@ -135,7 +135,7 @@ export default class CalculationsScreen extends React.Component {
         <ScrollView style={styles.container}
           contentContainerStyle={styles.contentContainer}> 
           <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>   1. What is your most used method of transportation? </Text>
+            <Text style={styles.titleText}>1. What was your most used method of transportation in the last 6 months? </Text>
           </View>
           <View style={styles.welcomeContainer}>
             <Button
@@ -176,7 +176,7 @@ export default class CalculationsScreen extends React.Component {
             />
           </View>
           <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>   2. If you drive a car or motorcycle what is your average gas mileage?</Text>
+            <Text style={styles.titleText}>2. If you drive a car or motorcycle what is your average gas mileage?</Text>
           </View>
           <View style={styles.welcomeContainer}>
             <Button
@@ -216,7 +216,7 @@ export default class CalculationsScreen extends React.Component {
             />
           </View>
           <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>   3. How many miles on average do you travel each day?</Text>
+            <Text style={styles.titleText}>3. How many miles on average do you travel each day?</Text>
           </View>
           <View style={styles.welcomeContainer}>
             <Button
@@ -246,7 +246,7 @@ export default class CalculationsScreen extends React.Component {
             />
           </View>
           <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>   4. How many people are you usually driving with?</Text>
+            <Text style={styles.titleText}>4. How many people are you usually driving with?</Text>
           </View>
           <View style={styles.welcomeContainer}>
             <Button
@@ -271,7 +271,7 @@ export default class CalculationsScreen extends React.Component {
             />
           </View>
           <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>   5. How much time do you want to spend on reducing your carbon footprint?</Text>
+            <Text style={styles.titleText}>5. How much time do you plan to spend on reducing your carbon footprint?</Text>
           </View>
           <View style={styles.welcomeContainer}>
             <Button
@@ -302,7 +302,7 @@ export default class CalculationsScreen extends React.Component {
 
           </View>
           <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>   6. How much money do you want to spend on reducing your carbon footprint?</Text>
+            <Text style={styles.titleText}>6. How much money do you plan to spend on reducing your carbon footprint?</Text>
           </View>
           <View style={styles.welcomeContainer}>
             <Button
@@ -332,7 +332,7 @@ export default class CalculationsScreen extends React.Component {
             />
           </View>
           <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>   7. How much electricity do you feel that your family uses?</Text>
+            <Text style={styles.titleText}>7. How much electricity do you feel that your family uses?</Text>
           </View>
           <View style={styles.welcomeContainer}>
             <Button
@@ -357,7 +357,7 @@ export default class CalculationsScreen extends React.Component {
             />
           </View>
           <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>   8. What are your eating habits?</Text>
+            <Text style={styles.titleText}>8. What have been your eating habits in the last 6 months?</Text>
           </View>
           <View style={styles.welcomeContainer}>
             <Button
