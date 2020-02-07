@@ -214,6 +214,11 @@ export default class CalculationsScreen extends React.Component {
               color="#00CC66"
               onPress={() => ( this.setFossilMileageValue('7') )}
             />
+            <Button
+              title="I do not drive a car or motorcycle"
+              color="#00CC66"
+              onPress={() => ( this.setFossilMileageValue('0') )}
+            />
           </View>
           <View style={styles.titleContainer}>
             <Text style={styles.titleText}>3. How many miles on average do you travel each day?</Text>
