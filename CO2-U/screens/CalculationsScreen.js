@@ -182,17 +182,17 @@ export default class CalculationsScreen extends React.Component {
             <Button
               title="Below 15 mpg"
               color="#003319"
-              onPress={() => ( this.setFossilMileageValue('1') )}
+              onPress={() => ( this.setFossilMileageValue('7') )}
             />
             <Button
               title="15-20 mpg"
               color="#004724"
-              onPress={() => ( this.setFossilMileageValue('2') )}
+              onPress={() => ( this.setFossilMileageValue('6') )}
             />
             <Button
               title="20-25 mpg"
               color="#006633"
-              onPress={() => ( this.setFossilMileageValue('3') )}
+              onPress={() => ( this.setFossilMileageValue('5') )}
             />
             <Button
               title="25-30 mpg"
@@ -202,17 +202,22 @@ export default class CalculationsScreen extends React.Component {
             <Button
               title="30-35 mpg"
               color="#00994C"
-              onPress={() => ( this.setFossilMileageValue('5') )}
+              onPress={() => ( this.setFossilMileageValue('3') )}
             />
             <Button
               title="35-40 mpg"
               color="#02AC57"
-              onPress={() => ( this.setFossilMileageValue('6') )}
+              onPress={() => ( this.setFossilMileageValue('2') )}
             />
             <Button
               title="Above 40 mpg"
               color="#00CC66"
-              onPress={() => ( this.setFossilMileageValue('7') )}
+              onPress={() => ( this.setFossilMileageValue('1') )}
+            />
+            <Button
+              title="I do not drive a car or motorcycle"
+              color="#00FF80"
+              onPress={() => ( this.setFossilMileageValue('0') )}
             />
           </View>
           <View style={styles.titleContainer}>
