@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 //import { ScrollView, StyleSheet } from 'react-native';
 //import { ExpoLinksView } from '@expo/samples';
 import {
@@ -9,7 +9,14 @@ import {
   Text,
   TouchableOpacity,
   View,
+  AsyncStorage,
+  Button,
 } from 'react-native';
+import {Constants} from 'expo';
+import {withNavigation} from 'react-navigation';
+import {CheckBox} from 'react-native-elements';//need to install this dependency 
+            //https://react-native-elements.github.io/react-native-elements/docs/getting_started.html
+import '@expo/vector-icons';
 import * as firebase from 'firebase';
 
 //setting up firebase
@@ -32,10 +39,32 @@ export default class DailyChallengesScreen extends React.Component {
   constructor(props) {
     super(props);
     //updates daily challenge value
-    state = {};
+    state = {
+      checked: false,
+    };
+    press = () => {
+      this.setState((state) => ({
+        checked: !state.checked,
+      }));
+    }
     this.state = {
       daily: "Loading..."
     }
+  }
+
+  static navigationOptions = {
+    title: 'Daily Challenges',
+  }
+
+  setGoalsValue = (goal) => {
+    console.log('setGoalsValue called  value = ', goal);
+    AsyncStorage.setItem('complete', goal);
+    this.setState(() => {
+      console.log('complete value = ', goal)      
+      return {
+        complete: goal
+      };
+    }); 
   }
   
   setupDailyChallengeListener(dailyNum) {
@@ -76,6 +105,14 @@ export default class DailyChallengesScreen extends React.Component {
         <Text style={styles.getStartedText}></Text>
         <Text style={styles.getAttentionText}>Why?</Text>
         <Text style={styles.dailyChallengeText}>{this.state.blurb}</Text>
+        <CheckBox 
+          center
+          title='Complete this daily challenge'
+          checked={this.state.checked}
+          onPress={() => (this.setGoalsValue(this.state.daily), this.setState({checked: !this.state.checked}))}
+          // onPress={()=> (this.setGoalsValue(this.state.daily), this.setState({ checked: !this.state.checked}), 
+          //               navigate('ActiveGoalsScreen', {JSON_ListView_Clicked_Item: this.state.daily}))}
+        />
         <Image
             source={
               __DEV__
