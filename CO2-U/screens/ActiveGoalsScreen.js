@@ -49,10 +49,16 @@ export default class ActiveGoalsScreen extends React.Component {
   };
 
   componentWillMount() {
+   console.log('active goals screen will mount');
    this.fetchAllData()
   }
 
+  componentDidMount() {
+    console.log('active goals screen mounted')
+  }
+
   async fetchAllData() {
+    console.log('fetchAllData');
     try {
 
       const keys = await AsyncStorage.getAllKeys();
@@ -61,6 +67,10 @@ export default class ActiveGoalsScreen extends React.Component {
     } catch (error) {
       console.error(error)
     }
+  }
+
+  componentWillUnmount() {
+    console.log('active goals screen will unmount')
   }
 
   render() {
@@ -75,12 +85,3 @@ export default class ActiveGoalsScreen extends React.Component {
     );
   }
 }
-
-/*
-//   <FlatList
-      //     data = {this.DATA}
-      //     renderItem = {({ item }) => <Item title={item.title} />}
-      //     keyExtractor = { item => item.id }
-      //   />
-      //
- */

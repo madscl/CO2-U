@@ -55,10 +55,16 @@ export default class DailyChallengesScreen extends React.Component {
 
   async syncToggleStateWithStorage() {
     const keys = await AsyncStorage.getAllKeys();
+    var today = new Date();
+    today.setHours(0, 0, 0, 0)
+    var todayString = today.toLocaleDateString();
     for (stringKey of keys) {
-       if (stringKey.startsWith(this.state.daily)) {
-         this.toggleSwitch(true);
-       }
+      var nameAndDate = stringKey.split("~");
+      var name = nameAndDate[0];
+      var date = nameAndDate[1];
+      if (stringKey.startsWith(this.state.daily) && date == todayString) {
+        this.toggleSwitch(true);
+      }
     }
   }
 

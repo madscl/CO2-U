@@ -49,6 +49,7 @@ ChallengesStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-chatbubbles' : 'md-chatbubbles'} />
   ),
+  unmountOnBlur: true,
 };
 
 ChallengesStack.path = '';
@@ -58,7 +59,6 @@ const ActiveGoalsStack= createStackNavigator(
   {
     ActiveGoals: ActiveGoalsScreen,
   },
-  config
 );
 
 ActiveGoalsStack.navigationOptions = {
@@ -66,6 +66,7 @@ ActiveGoalsStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-checkbox' : 'md-checkbox'} />
   ),
+  unmountOnBlur: true,
 };
 
 ActiveGoalsStack.path = '';
