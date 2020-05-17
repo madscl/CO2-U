@@ -50,7 +50,13 @@ export default class ActiveGoalsScreen extends React.Component {
 
   componentWillMount() {
    console.log('active goals screen will mount');
-   this.fetchAllData()
+   this.subs = [
+     this.props.navigation.addListener('didFocus', () => this.isFocused()),
+   ];
+  }
+
+  isFocused() {
+    this.fetchAllData()
   }
 
   componentDidMount() {
@@ -71,6 +77,7 @@ export default class ActiveGoalsScreen extends React.Component {
 
   componentWillUnmount() {
     console.log('active goals screen will unmount')
+    this.subs.forEach(sub => sub.remove());
   }
 
   render() {
