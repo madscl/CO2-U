@@ -1,6 +1,11 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Image, Text } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import {
+  AsyncStorage,
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Text } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,27 +13,74 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     backgroundColor: 'white',
   },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 12,
+  },
 });
 
+function Item({ title }) {
+  var nameAndDate = title.split("~");
+  var name = nameAndDate[0];
+  var date = nameAndDate[1];
+  return (
+    <View style={styles.item}>
+      <Text style={styles.title}>{name}</Text>
+      <Text style={styles.title}>{date}</Text>
+    </View>
+  );
+}
 
 export default class ActiveGoalsScreen extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoading: false,
+      data: [],
+    };
+  }
   static navigationOptions = {
     title: 'Completed Challenges',
   };
 
+  componentWillMount() {
+   this.fetchAllData()
+  }
+
+  async fetchAllData() {
+    try {
+
+      const keys = await AsyncStorage.getAllKeys();
+      this.setState({data: keys})
+      console.log('keys = ', keys);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   render() {
     return (
-      <ScrollView style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-          <Text style={styles.titleText}>Goal 1</Text> 
-          {/*displays text on L edge of screen, in HomeScreen this same code displays text in the middle, idk why*/}
-          <View style={{ width: 2000, height: 100, backgroundColor: 'powderblue' }} />
-          {/*displays box of color, will not be gaurenteed to fill whole screen on bigger phone, could just make huge num and never go away?*/}
-          <Text style={styles.titleText}>Goal 2</Text>
-          <View style={{ width: 2000, height: 100, backgroundColor: 'skyblue' }} />
-          <Text style={styles.titleText}>Goal 3</Text>
-          <View style={{ width: 2000, height: 100, backgroundColor: 'steelblue' }} />
-      </ScrollView> //chnaged all width to be longer as to fill whole web emulator
+       <SafeAreaView style={styles.container}>
+         <FlatList
+           data = {this.state.data}
+           renderItem = {({ item }) => <Item title={item} />}
+           keyExtractor = { item => item }
+         ></FlatList>
+       </SafeAreaView>
     );
   }
 }
+
+/*
+//   <FlatList
+      //     data = {this.DATA}
+      //     renderItem = {({ item }) => <Item title={item.title} />}
+      //     keyExtractor = { item => item.id }
+      //   />
+      //
+ */

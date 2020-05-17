@@ -2,15 +2,18 @@ import React from 'react';
 //import { ScrollView, StyleSheet } from 'react-native';
 //import { ExpoLinksView } from '@expo/samples';
 import {
+  AsyncStorage,
   Image,
   Platform,
   ScrollView,
   StyleSheet,
+  Switch,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import * as firebase from 'firebase';
+
 
 //setting up firebase
 var firebaseConfig = {
@@ -34,8 +37,10 @@ export default class DailyChallengesScreen extends React.Component {
     //updates daily challenge value
     state = {};
     this.state = {
-      daily: "Loading..."
+      daily: "Loading...",
+      completed: false,
     }
+    this.toggleSwitch = this.toggleSwitch.bind(this);
   }
   
   setupDailyChallengeListener(dailyNum) {
@@ -44,7 +49,17 @@ export default class DailyChallengesScreen extends React.Component {
       console.log(snapshot.val());
       //sets state as value
       this.setState({daily: snapshot.val()})
+      this.syncToggleStateWithStorage();
     });
+  }
+
+  async syncToggleStateWithStorage() {
+    const keys = await AsyncStorage.getAllKeys();
+    for (stringKey of keys) {
+       if (stringKey.startsWith(this.state.daily)) {
+         this.toggleSwitch(true);
+       }
+    }
   }
 
   setupBlurbListener(dailyNum) {
@@ -65,6 +80,18 @@ export default class DailyChallengesScreen extends React.Component {
     this.setupBlurbListener(value)
   }
 
+
+
+  toggleSwitch(newValue)  {
+    this.setState({completed: newValue});
+    var today = new Date();
+    today.setHours(0, 0, 0, 0)
+    var key = this.state.daily + '~' + today.toLocaleDateString();
+    if (newValue) {
+      AsyncStorage.setItem(key, 'true');
+    }
+  }
+
   render() {
     return (
       <ScrollView style={StyleSheet.container}>
@@ -76,6 +103,17 @@ export default class DailyChallengesScreen extends React.Component {
         <Text style={styles.getStartedText}></Text>
         <Text style={styles.getAttentionText}>Why?</Text>
         <Text style={styles.dailyChallengeText}>{this.state.blurb}</Text>
+        <View style={styles.switchContainer}>
+          <Text style={styles.horizontalItem}>Completed</Text>
+          <Switch
+            // trackColor={{ false: "#767577", true: "#81b0ff" }}
+            // thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+            // ios_backgroundColor="#3e3e3e"
+           onValueChange={this.toggleSwitch}
+           value={this.state.completed}
+          />
+        </View>
+
         <Image
             source={
               __DEV__
@@ -84,6 +122,7 @@ export default class DailyChallengesScreen extends React.Component {
             }
             style={styles.iconImage}
           />
+
       </ScrollView>
     )
   }
@@ -96,6 +135,15 @@ DailyChallengesScreen.navigationOptions = {
 
 
 const styles = StyleSheet.create({
+  horizontalItem: {
+    margin: 8,
+  },
+  switchContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingVertical: 15,
+  },
   container: {
     flex: 1,
     paddingTop: 15,
